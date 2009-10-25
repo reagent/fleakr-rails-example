@@ -5,3 +5,4 @@ config/database.yml
 db/*.sqlite3
 coverage
 config/initializers/fleakr.rb
+tmp/restart.txt

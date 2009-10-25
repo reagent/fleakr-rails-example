@@ -5,6 +5,14 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+
+  protected
+  def current_flickr_user
+    Fleakr.user_for_token(session[:auth_token]) unless session[:auth_token].nil?
+  end
+  
+  def check_for_flickr_user_or_redirect
+    redirect_to root_url and return if current_flickr_user.nil?
+  end
+
 end
