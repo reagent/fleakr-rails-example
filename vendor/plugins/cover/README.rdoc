@@ -1,0 +1,56 @@
+= Cover
+
+Generate code coverage statistics for your Rails project and integrate it with your
+Continuous Integration environment.  This plugin generates some rake tasks to generate 
+coverage for your tests and will raise an exception if the coverage drops below an 
+acceptable level.
+
+== Installation
+
+Make sure you have the latest version of Rcov installed:
+
+    $ sudo gem install relevance-rcov --source=http://gems.github.com
+
+Then install the plugin from Github:
+
+    $ script/plugin install git://github.com/vigetlabs/cover.git
+
+Once the plugin is installed, you'll need to freeze the default Rake task into your
+project:
+
+    $ rake cover:freeze
+
+== Example
+
+Out of the box, the plugin defines the following Rake tasks:
+
+    rake cover:clobber_coverage  # Remove rcov products for coverage
+    rake cover:coverage          # Analyze code coverage with tests for coverage
+    rake cover:ensure            # Ensure code coverage at or above configured threshold
+
+To use, simply run `rake cover:ensure` to generate code coverage statistics. This will raise
+an exception and return a non-zero status (for use with a CI server).  By default, this plugin
+is set up to quickly integrate with CruiseControl.rb with the `cruise` task:
+
+    rake cruise # Run the cover:ensure task in the CruiseControl environment
+    
+== Configuration
+
+By default, the plugin strives for 95% code coverage. If you want to tune this up or down in
+your environment, configure the default Rake task:
+
+    # lib/tasks/cover.rake
+    Cover::Task.new do |t|
+      t.threshold = 80
+    end
+
+Additionally, the Rake task has a dependency on the `db:migrate:reset` task.  You can 
+configure this through the task definition:
+
+    Cover::Task.new('db:migrate:reset', 'db:seed', 'other:task:here')
+
+See the default Rake task for a more detailed example.
+
+== License
+
+Copyright (c) 2009 Mark Cornick and Patrick Reagan of Viget Labs, released under the MIT license

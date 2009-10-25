@@ -1,0 +1,5 @@
+author: Mark Cornick and Patrick Reagan of Viget Labs
+summary: Provides configurable code coverage generation tasks for your Rails projects
+homepage: http://www.viget.com/extend
+license: MIT
+rails_version: 2.3+
