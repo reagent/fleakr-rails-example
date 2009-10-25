@@ -15,4 +15,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_url and return if current_flickr_user.nil?
   end
 
+  helper_method :current_flickr_user
+
 end

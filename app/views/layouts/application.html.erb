@@ -1,0 +1,6 @@
+<div>
+  <p><%= image_tag current_flickr_user.icon_url %> <%= current_flickr_user.username %> </p>
+  <p><%= link_to 'View Photos', photos_url %> | <%= link_to 'View Sets', sets_url %> | <%= link_to 'Log Out', logout_url %></p>
+</div>
+
+<%= yield %>

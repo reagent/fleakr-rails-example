@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
 
-  def new; end
+  def new
+    render :layout => false
+  end
   
   def authorize
     redirect_to Fleakr.authorization_url(:delete)
@@ -11,6 +13,11 @@ class SessionsController < ApplicationController
     session[:auth_token] = token.value
     
     redirect_to photos_url
+  end
+  
+  def destroy
+    reset_session
+    redirect_to root_url
   end
 
 end
