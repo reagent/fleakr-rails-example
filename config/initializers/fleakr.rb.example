@@ -1,2 +1,4 @@
 Fleakr.api_key       = 'key'
 Fleakr.shared_secret = 'secret'
+
+Fleakr.logger = RAILS_DEFAULT_LOGGER
